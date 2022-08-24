@@ -8,12 +8,13 @@ public class MDV{
 
     public static void main(String[] args) {
         port(getPort());
-        get("/hello", (req, res) -> "Hello Heroku");
+        staticFiles.location("/webapp");
 
         get("/intraday",(req,res)  -> {
             res.type("application/json");
             return HttpConnectionExample.getAPI();
         });
+
     }
 
     static int getPort() {
