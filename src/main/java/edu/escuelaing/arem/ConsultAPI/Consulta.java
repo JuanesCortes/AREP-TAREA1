@@ -21,7 +21,8 @@ public class Consulta {
 				cache.almacenarCache(key, consult);
 			}
 		} catch (CacheException | IOException e) {
-			e.printStackTrace();
+			consult = "Error en la consulta";
+			return consult;
 		}
 		return consult;
 		
