@@ -12,9 +12,9 @@ public class Cache {
 	 * @return cache
 	 * @throws CacheException Si el cache no existe
 	 */
-	public String getCache(String empresa, String fecha) throws CacheException {
-		if (!hayCache(empresa,fecha)) {throw new CacheException(CacheException.NO_EXISTE_CACHE);}
-		return cache.get(empresa+fecha);
+	public String getCache(String key) throws CacheException {
+		if (!hayCache(key)) {throw new CacheException(CacheException.NO_EXISTE_CACHE);}
+		return cache.get(key);
 	}
 	
 	/**
@@ -24,9 +24,8 @@ public class Cache {
 	 * @param jsonText
 	 * @throws CacheException
 	 */
-	public void almacenarCache(String empresa, String fecha, String jsonText) throws CacheException {
-		if (hayCache(empresa,fecha)) {throw new CacheException(CacheException.EXISTE_CACHE);}
-		String key = empresa+fecha;
+	public void almacenarCache(String key, String jsonText) throws CacheException {
+		if (hayCache(key)) {throw new CacheException(CacheException.EXISTE_CACHE);}
 		cache.put(key, jsonText);
 		
 	}
@@ -37,9 +36,9 @@ public class Cache {
 	 * @param fecha
 	 * @return existe 
 	 */
-	public boolean hayCache(String empresa, String fecha) {
+	public boolean hayCache(String key) {
 		boolean existe = false;
-		if(cache.containsKey(empresa+fecha)) {
+		if(cache.containsKey(key)) {
 			existe = true;
 		}
 		return existe;

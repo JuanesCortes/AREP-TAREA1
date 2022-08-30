@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>Consulta:</h1>
+<h1>Consulta Alpha Vantage API:</h1>
 <form action="/hello">
     <label for="name">Acrónimo de la empresa::</label><br>
     <input type="text" id="name" name="name" value="IBM"><br><br>
@@ -30,6 +30,31 @@
                     this.responseText;
                 }
                 xhttp.open("GET", "/app?name="+nameVar+"&date="+fecha);
+                xhttp.send();
+            }
+            
+</script>
+
+<h1>Consulta Polygon API:</h1>
+<div>
+	<input type="button" id ="minute" value="Minutos"  onclick="loadGetMsgPoly('minute')">
+    <input type="button" id ="hour" value="Hora"  onclick="loadGetMsgPoly('hour')">
+    <input type="button" id ="daily" value="Diaria" onclick="loadGetMsgPoly('daily')">
+    <input type="button" id ="week" value="Semanal" onclick="loadGetMsgPoly('week')">
+    <input type="button" id ="month" value="Mensual" onclick="loadGetMsgPoly('month')">
+</div>
+
+<div id="getrespmsgpoly"></div>
+
+<script>
+            function loadGetMsgPoly(fecha) {
+                let nameVar = document.getElementById("name").value;
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("getrespmsgpoly").innerHTML =
+                    this.responseText;
+                }
+                xhttp.open("GET", "/appPoly?name="+nameVar+"&date="+fecha);
                 xhttp.send();
             }
             

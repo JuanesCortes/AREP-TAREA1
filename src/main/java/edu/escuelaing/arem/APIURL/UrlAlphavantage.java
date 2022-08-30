@@ -1,6 +1,6 @@
 package edu.escuelaing.arem.APIURL;
 
-public class UrlAlphavantage{
+public class UrlAlphavantage implements URLGen{
 	
 	/**
 	 * Genera el URL para esuo del API segun los parametros que llegan en el encabezado del metodo
@@ -8,7 +8,7 @@ public class UrlAlphavantage{
 	 * @param fecha
 	 * @return URL
 	 */
-	public static String generar(String empresa, String fecha) {
+	public String generar(String empresa, String fecha) {
 		fecha = formatDate(fecha);
 		String URL = "https://www.alphavantage.co/query?function="+fecha+"&symbol="+empresa+"&interval=5min&apikey=QU5NPZG0FQEJA57P";
 		return URL;
@@ -19,7 +19,7 @@ public class UrlAlphavantage{
 	 * @param fecha
 	 * @return fecha
 	 */
-	public static String formatDate(String fecha){
+	public  String formatDate(String fecha){
         switch(fecha){
         	case "intraday":
         		fecha = "TIME_SERIES_INTRADAY";
@@ -36,5 +36,12 @@ public class UrlAlphavantage{
         }
         return fecha;
     }
+
+	/**
+	 * Genera el identificador con el que se guardara la consulta
+	 */
+	public String getKey(String empresa, String fecha) {
+		return empresa+formatDate(fecha);
+	}
 
 }
