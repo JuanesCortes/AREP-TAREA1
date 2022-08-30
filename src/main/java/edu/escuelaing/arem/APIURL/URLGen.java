@@ -9,6 +9,8 @@ public interface URLGen {
 	 * @return URL
 	 */
 	public String generar(String empresa , String fecha);
-	
+	/**
+	 * Genera el identificador con el que se guardara la consulta
+	 */
 	public String getKey(String empresa , String fecha);
 }
